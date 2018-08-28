@@ -25,7 +25,7 @@ Or if you'd like to run `defrag`:
 $ ./cpma-linux.sh defrag
 ```
 
-**Be sure that your `pulseaudio` deamon has `TCP` support enabled and listens on `PULSE_SERVER="tcp:localhost:4713"`**.
+**Be sure that your `pulseaudio` daemon has `TCP` support enabled and listens on `PULSE_SERVER="tcp:localhost:4713"`**.
 
 ### 2. `cpma-win32.sh`
 
