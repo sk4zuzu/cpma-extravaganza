@@ -4,6 +4,7 @@
 : ${IOQUAKE3_Q3A_RUN:=https://ioquake3.org/files/1.36/data/ioquake3-q3a-1.32-9.run}
 : ${CPMA_NOMAPS_ZIP:=https://cdn.playmorepromode.com/files/cpma/cpma-1.51-nomaps.zip}
 : ${CPMA_MAPPACK_FULL_ZIP:=https://cdn.playmorepromode.com/files/cpma-mappack-full.zip}
+: ${DEFRAG_ZIP:=https://q3defrag.org/files/defrag/defrag_1.91.25.zip}
 
 if [ -z "$NO_CACHE" ] || [ "$NO_CACHE" = 0 ]; then
     NO_CACHE=""
@@ -51,6 +52,10 @@ RUN curl -fsSL $CPMA_MAPPACK_FULL_ZIP -o /root/download.zip \\
  && unzip /root/download.zip -d \$Q3A_HOME/cpma/ \\
  && /bin/rm -f /root/download.zip
 
+RUN curl -fsSL $DEFRAG_ZIP -o /root/download.zip \\
+ && unzip /root/download.zip -d \$Q3A_HOME/ \\
+ && /bin/rm -f /root/download.zip
+
 WORKDIR \$Q3A_HOME/
 
 ENTRYPOINT []
@@ -60,7 +65,14 @@ EOF
 if [ -z "$@" ]; then
     CMD="/root/.q3a/ioquake3.x86_64 +set fs_game cpma"
 else
-    CMD="$@"
+    case $1 in
+        cpma|defrag)
+            CMD="/root/.q3a/ioquake3.x86_64 +set fs_game $1"
+        ;;
+        *)
+            CMD="$@"
+        ;;
+    esac
 fi
 
 exec docker run --rm \

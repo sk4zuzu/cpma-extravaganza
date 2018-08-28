@@ -20,6 +20,11 @@ Or examine the container:
 $ ./cpma-linux.sh /bin/bash
 ```
 
+Or if you'd like to run `defrag`:
+```bash
+$ ./cpma-linux.sh defrag
+```
+
 **Be sure that your `pulseaudio` deamon has `TCP` support enabled and listens on `PULSE_SERVER="tcp:localhost:4713"`**.
 
 ### 2. `cpma-win32.sh`
