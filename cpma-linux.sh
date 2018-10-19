@@ -84,6 +84,7 @@ exec docker run --rm \
     -v /tmp/.X11-unix/:/root/.X11-unix/:Z \
     -v $SELF/files/pak0.pk3:/root/.q3a/baseq3/pak0.pk3:Z \
     -v $SELF/files/q3config.cfg:/root/.q3a/cpma/q3config.cfg:Z \
+    -v $SELF/demos/:/root/.q3a/cpma/demos/:Z \
     -it cpma-linux \
     $CMD
 
